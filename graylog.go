@@ -1,4 +1,4 @@
-package garylog
+package graylog
 
 import (
 	"bytes"
