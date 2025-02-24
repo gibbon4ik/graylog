@@ -49,14 +49,14 @@ type GLMessage struct {
 	Full      string `json:"full_message"`
 }
 
-var logLevels = map[string]uint8{
-	"debug":    LEVEL_DBG,
-	"info":     LEVEL_INFO,
-	"notice":   LEVEL_NOTICE,
-	"warn":     LEVEL_WARN,
-	"error":    LEVEL_ERR,
-	"critical": LEVEL_CRIT,
-	"alert":    LEVEL_ALERT,
+var logLevels = map[uint8]string{
+	LEVEL_DBG:    "debug",
+	LEVEL_INFO:   "info",
+	LEVEL_NOTICE: "notice",
+	LEVEL_WARN:   "warn",
+	LEVEL_ERR:    "error",
+	LEVEL_CRIT:   "critical",
+	LEVEL_ALERT:  "alert",
 }
 
 func NewGraylog(opts Graylog) *Graylog {
@@ -188,6 +188,9 @@ func (gl *Graylog) Append(level uint8, data ...interface{}) {
 			gl.Send(packet)
 		}
 	}
+}
+func LevelAsString(level uint8) string {
+	return logLevels[level]
 }
 
 func (gl *Graylog) Log(level uint8, data ...interface{}) {

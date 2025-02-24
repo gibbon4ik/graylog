@@ -69,3 +69,20 @@ func TestGraylog(t *testing.T) {
 
 	gl.Info(long_message)
 }
+
+func TestLevelAsString(t *testing.T) {
+	str := LevelAsString(LEVEL_DBG)
+	if str != "debug" {
+		t.Errorf("LevelAsString: want '%s'; got '%s'", "debug", str)
+	}
+
+	str = LevelAsString(LEVEL_INFO)
+	if str != "info" {
+		t.Errorf("LevelAsString: want '%s'; got '%s'", "info", str)
+	}
+
+	str = LevelAsString(LEVEL_ALERT)
+	if str != "alert" {
+		t.Errorf("LevelAsString: want '%s'; got '%s'", "alert", str)
+	}
+}
